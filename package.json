@@ -1,0 +1,48 @@
+{
+  "name": "lockblock",
+  "displayName": "LockBlock",
+  "description": "Экран блокировки проекта внутри VS Code",
+  "version": "0.1.6",
+  "publisher": "local-dev",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lockBlock.protect",
+        "title": "Защитить",
+        "category": "LockBlock"
+      },
+      {
+        "command": "lockBlock.unprotect",
+        "title": "Снять защиту",
+        "category": "LockBlock"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "lockBlock.protect",
+          "when": "resourceScheme == file",
+          "group": "lockBlock"
+        },
+        {
+          "command": "lockBlock.unprotect",
+          "when": "resourceScheme == file",
+          "group": "lockBlock"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "check": "node --check src/extension.js && node --check src/fileGuard.js"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ]
+}
